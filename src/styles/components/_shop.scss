@@ -1,0 +1,36 @@
+.cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cats a {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--border-2);
+  border-radius: 2px;
+  padding: 9px 12px;
+}
+.cats a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.brands {
+  margin-top: 18px;
+  font-size: 11px;
+  color: var(--faint);
+}
+.yt {
+  margin-top: 28px;
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 20px;
+  background: var(--surface);
+  justify-items: start;
+}
+.yt p {
+  color: var(--muted);
+}

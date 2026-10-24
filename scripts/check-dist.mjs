@@ -1,0 +1,39 @@
+// Controlli sul build (dist/) che i test unitari non vedono. Gira in CI dopo `npm run build`.
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
+
+const html = readFileSync('dist/index.html', 'utf8')
+const assets = readdirSync('dist/assets')
+const css = assets
+  .filter((f) => f.endsWith('.css'))
+  .map((f) => readFileSync(`dist/assets/${f}`, 'utf8'))
+  .join('')
+const errors = []
+const check = (ok, msg) => ok || errors.push(msg)
+
+// CSP: niente script inline né attributi style nell'HTML pre-renderizzato.
+check(!/<script(?![^>]*\bsrc=)[^>]*>/.test(html), 'script inline in dist/index.html (vietati dalla CSP)')
+check(!/\sstyle="/.test(html), 'attributo style="" in dist/index.html (vietato dalla CSP)')
+// SEO: il contenuto deve essere nell'HTML, non solo dopo l'idratazione.
+check(html.includes('<h1>'), 'h1 assente: il pre-rendering non ha funzionato')
+check(/<html[^>]*lang="it"/.test(html), 'lang="it" assente su <html>')
+check(html.includes('viewport-fit=cover'), 'viewport senza viewport-fit=cover (safe area iOS)')
+check((html.match(/name="viewport"/g) || []).length === 1, 'meta viewport duplicato')
+// Demo non indicizzabile (decisione 2026-10-24): al go-live aggiornare questi controlli insieme ai file.
+check(html.includes('name="robots" content="noindex, nofollow"'), 'meta robots noindex mancante')
+check(
+  readFileSync('dist/_headers', 'utf8').includes('X-Robots-Tag: noindex'),
+  'X-Robots-Tag noindex mancante in _headers'
+)
+check(/Disallow: \/\s*$/m.test(readFileSync('dist/robots.txt', 'utf8')), 'robots.txt non blocca i crawler')
+check(!existsSync('dist/.vite'), 'dist/.vite verrebbe pubblicato (manifest)')
+// Revisioning: ogni asset ha l'hash nel nome.
+for (const f of assets) check(/-[\w-]{8}\.\w+$/.test(f), `asset senza hash: ${f}`)
+// Design: Lightning CSS ha già scartato una volta backdrop-filter non prefissato (ADR 0002).
+check(css.includes('backdrop-filter:blur(10px)'), 'backdrop-filter non prefissato mancante nel CSS')
+check(css.includes('oklch('), 'colori oklch convertiti: controlla i target CSS del build')
+
+if (errors.length) {
+  console.error(`check-dist: ${errors.length} problemi\n - ${errors.join('\n - ')}`)
+  process.exit(1)
+}
+console.log(`check-dist: ok (${assets.length} asset)`)

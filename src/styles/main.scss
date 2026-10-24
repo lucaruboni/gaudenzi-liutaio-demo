@@ -1,0 +1,18 @@
+// Entry unico degli stili. L'ordine dei partial riproduce la cascata della demo originale: non riordinare.
+// Layout: Alusonic structure (dark sticky bar, photo hero, filterable model grid, split sections, CTA band), mobile first.
+@use 'base/reset';
+@use 'base/tokens';
+@use 'base/global';
+@use 'layout/layout';
+@use 'components/buttons';
+@use 'components/site-header';
+@use 'components/hero';
+@use 'components/stats';
+@use 'components/models';
+@use 'components/split';
+@use 'components/band';
+@use 'components/repairs';
+@use 'components/artists';
+@use 'components/shop';
+@use 'components/contact';
+@use 'components/site-footer';

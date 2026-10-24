@@ -1,0 +1,4 @@
+# Demo non indicizzabile: blocca tutti i crawler (motori di ricerca e crawler AI).
+# Al go-live sostituire con "Allow: /" + Sitemap e togliere il noindex (vedi docs/DEPLOY.md).
+User-agent: *
+Disallow: /

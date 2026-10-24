@@ -1,0 +1,113 @@
+@use '../abstracts' as *;
+
+.services {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+.services li {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.services li::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+.fact {
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 14px;
+  display: grid;
+  gap: 2px;
+  background: var(--surface);
+}
+.fact .k {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.fact .v {
+  font-size: 13px;
+  font-weight: 700;
+}
+.fact.promo {
+  grid-column: 1 / -1;
+  border-color: var(--tortoise);
+}
+.fact.promo .v {
+  color: var(--tortoise);
+}
+.ship {
+  counter-reset: s;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+.ship li {
+  counter-increment: s;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: start;
+  color: var(--muted);
+}
+.ship li::before {
+  content: counter(s, decimal-leading-zero);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent);
+  border: 1px solid var(--border-2);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  font-variant-numeric: tabular-nums;
+}
+.ship-box {
+  margin-top: 32px;
+  display: grid;
+  gap: 18px;
+}
+
+@include from(sm) {
+  .facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .fact.promo {
+    grid-column: auto;
+  }
+}
+
+@include from(md) {
+  .repairs {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 72px;
+    align-items: start;
+  }
+  .ship-box {
+    margin-top: 0;
+  }
+}

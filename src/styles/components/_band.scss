@@ -1,0 +1,37 @@
+@use '../abstracts' as *;
+
+.band {
+  position: relative;
+  color: var(--ink);
+}
+.band img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+.band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, oklch(10% 0.008 55 / 0.92), oklch(10% 0.008 55 / 0.55));
+}
+.band .wrap {
+  position: relative;
+  z-index: 2;
+  padding-block: 64px;
+  display: grid;
+  gap: 14px;
+}
+.band p {
+  max-width: 58ch;
+  color: var(--muted);
+}
+
+@include from(md) {
+  .band .wrap {
+    padding-block: 110px;
+  }
+}

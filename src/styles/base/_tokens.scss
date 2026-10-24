@@ -1,0 +1,77 @@
+@use '../abstracts' as *;
+
+/* Palette: espresso black + spruce tan (the Gaudenzi bar colour) + tortoiseshell red from the pickguard; product photos sit on a white "studio" tile.
+   I colori vivono solo qui come custom properties: i componenti usano var(--…), mai valori letterali. */
+@mixin theme-light {
+  --bg: oklch(97% 0.012 80);
+  --bg-alt: oklch(93.5% 0.018 78);
+  --surface: oklch(99% 0.005 80);
+  --ink: oklch(20% 0.015 55);
+  --muted: oklch(40% 0.02 60);
+  --faint: oklch(52% 0.02 60);
+  --accent: oklch(50% 0.08 62);
+  --accent-ink: oklch(98% 0.01 80);
+  --tortoise: oklch(48% 0.14 36);
+  --border: oklch(80% 0.02 70 / 0.8);
+  --border-2: oklch(64% 0.03 65);
+  --ok: oklch(48% 0.13 150);
+  color-scheme: light;
+}
+
+:root {
+  --bg: oklch(14% 0.008 55);
+  --bg-alt: oklch(11% 0.006 55);
+  --surface: oklch(18% 0.01 55);
+  --ink: oklch(95% 0.012 80);
+  --muted: oklch(76% 0.02 72);
+  --faint: oklch(60% 0.02 65);
+  --accent: oklch(72% 0.075 70);
+  --accent-ink: oklch(15% 0.01 55);
+  --tortoise: oklch(62% 0.14 38);
+  --border: oklch(34% 0.015 60 / 0.6);
+  --border-2: oklch(46% 0.02 60);
+  --studio: oklch(99% 0.002 80);
+  --ok: oklch(74% 0.13 150);
+  --font: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --display: 'Yellowtail', 'Brush Script MT', cursive; /* echoes the Gaudenzi script logo */
+  --gutter: 16px;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    @include theme-light;
+  }
+}
+:root[data-theme='light'] {
+  @include theme-light;
+}
+
+/* Header, hero and footer stay dark in both themes, like Alusonic's bar */
+.dark {
+  --bg: oklch(14% 0.008 55);
+  --bg-alt: oklch(11% 0.006 55);
+  --surface: oklch(18% 0.01 55);
+  --ink: oklch(95% 0.012 80);
+  --muted: oklch(76% 0.02 72);
+  --faint: oklch(60% 0.02 65);
+  --accent: oklch(72% 0.075 70);
+  --accent-ink: oklch(15% 0.01 55);
+  --tortoise: oklch(62% 0.14 38);
+  --border: oklch(34% 0.015 60 / 0.6);
+  --border-2: oklch(46% 0.02 60);
+  color-scheme: dark;
+  color: var(--ink);
+}
+
+@include from(sm) {
+  :root {
+    --gutter: 28px;
+  }
+}
+
+@include from(md) {
+  :root {
+    --gutter: 48px;
+  }
+}

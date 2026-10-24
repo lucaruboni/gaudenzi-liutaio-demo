@@ -1,0 +1,4 @@
+# Cloudflare Pages (deploy da GitHub Actions con wrangler). Il nome progetto va creato una volta su Cloudflare.
+name = "gaudenzi-guitars"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"

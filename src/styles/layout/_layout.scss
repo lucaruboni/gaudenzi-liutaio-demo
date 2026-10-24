@@ -1,0 +1,46 @@
+@use '../abstracts' as *;
+
+.wrap {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.section {
+  padding-block: 56px;
+}
+.section-alt {
+  background: var(--bg-alt);
+}
+.head {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.lead {
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+@include from(sm) {
+  .section {
+    padding-block: 80px;
+  }
+}
+
+@include from(md) {
+  .section {
+    padding-block: 104px;
+  }
+  .head {
+    margin-bottom: 40px;
+  }
+}

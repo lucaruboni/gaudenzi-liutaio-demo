@@ -1,0 +1,53 @@
+@use '../abstracts' as *;
+
+.artists {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.artist {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.artist img {
+  aspect-ratio: 1;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  filter: grayscale(0.35);
+  transition: filter 0.3s;
+}
+.artist:hover img {
+  filter: none;
+}
+.artist figcaption {
+  display: grid;
+  gap: 2px;
+}
+.artist-name {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.artist-role {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@include from(sm) {
+  .artists {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@include from(md) {
+  .artists {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+}

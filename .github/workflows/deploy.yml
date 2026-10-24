@@ -1,0 +1,36 @@
+name: Deploy
+
+# ALTERNATIVA MANUALE. Il deploy normale lo fa Cloudflare Pages collegato al repository GitHub
+# (docs/DEPLOY.md). Questo workflow serve solo se si passa al deploy da Actions: richiede i secret
+# CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID. Tenerlo manuale evita doppi deploy.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: ${{ github.ref_name == 'main' && 'production' || 'preview' }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=gaudenzi-guitars --branch=${{ github.ref_name }}

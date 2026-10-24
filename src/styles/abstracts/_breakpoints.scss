@@ -1,0 +1,18 @@
+@use 'sass:map';
+
+// Mobile first: i breakpoint della demo originale. Non aggiungerne senza un ADR.
+$breakpoints: (
+  sm: 600px,
+  md: 900px,
+  lg: 1080px,
+);
+
+@mixin from($bp) {
+  @if not map.has-key($breakpoints, $bp) {
+    @error 'Breakpoint sconosciuto: #{$bp}';
+  }
+
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
