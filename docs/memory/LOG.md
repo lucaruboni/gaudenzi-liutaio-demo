@@ -1,5 +1,11 @@
 # Diario delle sessioni
 
+## 2026-10-24 — Correzione modello 3D
+
+- In produzione il modello non si caricava: `setMeshoptDecoder must be called before loading compressed files`. Causa: compressione meshopt scelta senza provare il file nel browser; model-viewer scarica il decoder da CDN e la CSP lo blocca.
+- Rigenerato dall'originale con quantizzazione + WebP, senza istanze GPU (che producevano 9 errori in console): 1,81 MB. Verificato via CDP: `loaded: true`, console pulita, rendering uguale all'originale.
+- Esito: corretto; `docs/3D.md` aggiornato con il divieto di meshopt/draco e la verifica obbligatoria nel browser.
+
 ## 2026-10-24 — Sezione 3D
 
 - Cercati modelli: Poly Haven nessuna chitarra; scelto su Sketchfab (API di ricerca) «Acoustic Guitar» di afurokn, CC BY.
