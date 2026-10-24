@@ -19,6 +19,10 @@ export default [
     },
   },
   {
+    files: ['worker/**/*.js'],
+    languageOptions: { globals: { ...globals.serviceworker } },
+  },
+  {
     files: ['*.config.js', 'scripts/**/*.{js,mjs}'],
     languageOptions: { globals: { ...globals.node } },
   },

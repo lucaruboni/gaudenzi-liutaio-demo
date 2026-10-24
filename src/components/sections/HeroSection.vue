@@ -1,21 +1,38 @@
 <script setup>
-import heroDesktop from '@/assets/img/hero-om24r.webp'
-import heroMobile from '@/assets/img/hero-om24r-m.webp'
+import { onMounted, ref } from 'vue'
+import { useHead } from '@unhead/vue'
+import heroVideo from '@/assets/video/hero-gaudenzi.mp4'
+import heroPoster from '@/assets/img/hero-video-poster.webp'
+
+// Il poster è il primo contenuto visibile (LCP): lo carichiamo subito.
+useHead({ link: [{ rel: 'preload', as: 'image', href: heroPoster, fetchpriority: 'high' }] })
+
+const video = ref(null)
+
+// Chi chiede meno movimento vede solo il poster.
+onMounted(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) video.value?.pause()
+})
 </script>
 
 <template>
   <section class="hero dark">
     <div class="hero-media">
-      <picture>
-        <source media="(min-width: 900px)" :srcset="heroDesktop" />
-        <img
-          :src="heroMobile"
-          alt="Gaudenzi OM24R, tavola in abete roasted e battipenna tartarugato"
-          width="700"
-          height="515"
-          fetchpriority="high"
-        />
-      </picture>
+      <video
+        ref="video"
+        :src="heroVideo"
+        :poster="heroPoster"
+        width="1280"
+        height="720"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        disablepictureinpicture
+        aria-hidden="true"
+        tabindex="-1"
+      ></video>
     </div>
     <div class="wrap hero-text-wrap">
       <div class="hero-text">

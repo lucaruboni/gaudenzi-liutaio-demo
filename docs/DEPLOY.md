@@ -4,6 +4,8 @@ Il sito è un **Worker con soli asset statici** collegato al repository GitHub (
 
 Configurazione in `wrangler.toml`: `name = "gaudenzi-liutaio-demo"` (deve coincidere con il nome del Worker nel dashboard) e `[assets] directory = "./dist"`.
 
+C'è un solo script, `worker/index.js`, che gira **solo per `/assets/*.mp4`** (`run_worker_first`): gli asset statici dei Worker rispondono `200` alle richieste `Range`, mentre Safari/iOS riproducono i video solo con `206 Partial Content`. Tutto il resto è servito direttamente come asset statico, con gli header di `_headers`.
+
 ## Stato: demo NON indicizzabile
 
 | Dove                | Cosa                                                   |
@@ -41,7 +43,8 @@ Se il build fallisce: Worker → **Deployments** → build fallito → **View bu
 
 ```bash
 npm run build && npx wrangler deploy --dry-run   # valida config e asset senza pubblicare
-npx wrangler dev                                  # serve dist/ come in produzione, con _headers
+npx wrangler dev                                  # serve dist/ come in produzione, con _headers e il Worker
+curl -sI -H 'Range: bytes=0-1' http://localhost:8787/assets/<video>.mp4   # atteso: 206
 ```
 
 ## Note

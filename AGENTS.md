@@ -10,7 +10,7 @@ Stack: **Vue 3.5** (`<script setup>`) · **Vite 8** · **vite-ssg** (pre-renderi
 
 ## Regola numero uno: il design è congelato
 
-Il riferimento visivo è [`docs/legacy-demo.html`](docs/legacy-demo.html) (la demo originale). Colori, spaziature, tipografia, layout e testi non cambiano se il compito non lo chiede esplicitamente. Dopo ogni modifica a stili o markup: verifica visiva secondo [`docs/agents/VISUAL-CHECK.md`](docs/agents/VISUAL-CHECK.md) (atteso 0 pixel di differenza).
+Il riferimento visivo è [`docs/legacy-demo.html`](docs/legacy-demo.html) (la demo originale). Colori, spaziature, tipografia, layout e testi non cambiano se il compito non lo chiede esplicitamente. Dopo ogni modifica a stili o markup: verifica visiva secondo [`docs/agents/VISUAL-CHECK.md`](docs/agents/VISUAL-CHECK.md) (atteso 0 pixel di differenza, salvo le eccezioni approvate elencate lì: oggi l'hero con video).
 
 ## Prima di lavorare: la memoria
 
@@ -55,6 +55,7 @@ src/
   styles/                  SCSS: abstracts, base, layout, components; entry main.scss (ordine fisso)
 tests/unit/                test Vitest
 scripts/                   check-dist.mjs (controlli sul build), memory.mjs (memoria agenti)
+worker/index.js            Worker Cloudflare, solo per servire i video con Range (Safari/iOS)
 docs/                      adr/, agents/, memory/, legacy-demo.html
 .github/                   workflow CI e deploy, Dependabot, template PR
 .claude/                   agenti, comandi e impostazioni di Claude Code

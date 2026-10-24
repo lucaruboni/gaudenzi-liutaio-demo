@@ -1,5 +1,12 @@
 # Diario delle sessioni
 
+## 2026-10-24 — Hero con video
+
+- Sito online su `gaudenzi-liutaio-demo.lucaruboni.workers.dev`.
+- Richiesta dell'utente: hero a 100vh e video `src/assets/video` (rinominato `hero-gaudenzi.mp4`: lo spazio nel nome) al posto della foto. Poster estratto dal primo fotogramma.
+- Scoperto che gli asset statici dei Worker ignorano `Range` (200 invece di 206): aggiunto `worker/index.js` solo per `/assets/*.mp4`, verificato con `wrangler dev` (206 + header di `_headers` intatti).
+- Verificato in Chromium: fondo hero = fondo schermo a 1920/1440/1000 px, video in riproduzione; resto pagina invariato (mobile 0 px; desktop solo rumore di ricampionamento nelle foto).
+
 ## 2026-10-24 — Pubblicazione su Cloudflare Pages, senza indicizzazione
 
 - Scelta l'integrazione Git di Cloudflare Pages; guida in `docs/DEPLOY.md`; `deploy.yml` reso manuale per evitare doppi deploy.

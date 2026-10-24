@@ -26,6 +26,10 @@ check(
 )
 check(/Disallow: \/\s*$/m.test(readFileSync('dist/robots.txt', 'utf8')), 'robots.txt non blocca i crawler')
 check(!existsSync('dist/.vite'), 'dist/.vite verrebbe pubblicato (manifest)')
+// Video dell'hero: gli attributi devono esserci già nell'HTML pre-renderizzato, o l'autoplay su iOS non parte.
+const video = html.match(/<video[^>]*>/)?.[0] ?? ''
+for (const a of ['autoplay', 'muted', 'loop', 'playsinline', 'poster='])
+  check(video.includes(a), `video dell'hero senza ${a}`)
 // Revisioning: ogni asset ha l'hash nel nome.
 for (const f of assets) check(/-[\w-]{8}\.\w+$/.test(f), `asset senza hash: ${f}`)
 // Design: Lightning CSS ha già scartato una volta backdrop-filter non prefissato (ADR 0002).

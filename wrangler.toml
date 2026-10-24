@@ -2,7 +2,11 @@
 # `name` deve coincidere con il nome del Worker nel dashboard.
 name = "gaudenzi-liutaio-demo"
 compatibility_date = "2026-10-01"
+# Script minimo che serve solo i video con supporto Range (Safari/iOS); tutto il resto sono asset statici.
+main = "worker/index.js"
 
 [assets]
-# Nessuno script Worker: Cloudflare serve solo i file di dist/ applicando public/_headers.
 directory = "./dist"
+binding = "ASSETS"
+# Il Worker gira prima degli asset solo per questi percorsi.
+run_worker_first = ["/assets/*.mp4"]

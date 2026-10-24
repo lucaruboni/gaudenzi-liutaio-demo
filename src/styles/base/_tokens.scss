@@ -35,6 +35,8 @@
   --font: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
   --display: 'Yellowtail', 'Brush Script MT', cursive; /* echoes the Gaudenzi script logo */
   --gutter: 16px;
+  // Altezza dell'header sticky (padding + logo + bordo, vedi _site-header.scss): la usa l'hero a schermo intero.
+  --header-h: 61px;
   color-scheme: dark;
 }
 
@@ -73,5 +75,11 @@
 @include from(md) {
   :root {
     --gutter: 48px;
+  }
+}
+
+@include from(lg) {
+  :root {
+    --header-h: 73px;
   }
 }

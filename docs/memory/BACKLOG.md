@@ -24,6 +24,8 @@ Priorità: **P0** blocca il go-live · **P1** importante · **P2** miglioramento
 
 ## Completati
 
+- 2026-10-24 — Hero con video e a schermo intero da desktop (richiesta dell'utente), test e controlli `check-dist` sul video.
+
 - 2026-10-24 — Merge su `main` e push; progetto adattato a Worker con asset statici (`wrangler.toml` `[assets]`, wrangler 4.149.0 fissato).
 
 - 2026-10-24 — Deploy via integrazione Git di Cloudflare Pages documentato; demo resa non indicizzabile; manifest fuori da `dist/`.

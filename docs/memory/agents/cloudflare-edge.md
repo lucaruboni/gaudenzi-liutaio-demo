@@ -4,3 +4,4 @@ Note durevoli del dominio (trappole, convenzioni, scoperte). Brevi. Aggiornate d
 
 - Il dashboard "Create" porta ai Worker, non a Pages: un `wrangler.toml` in formato Pages (`pages_build_output_dir`) fa fallire `wrangler deploy`. Usiamo `[assets]`.
 - In Workers Builds `name` in `wrangler.toml` deve coincidere con il nome del Worker.
+- Gli asset statici dei Worker rispondono 200 (file intero) alle richieste `Range` (verificato 2026-10-24 su workers.dev): per i video serve `worker/index.js`. Gli header di `_headers` restano applicati anche passando dal Worker (verificato con `wrangler dev`).

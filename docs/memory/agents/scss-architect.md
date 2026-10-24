@@ -5,3 +5,4 @@ Note durevoli del dominio (trappole, convenzioni, scoperte). Brevi. Aggiornate d
 - Lightning CSS (minificatore CSS di Vite 8) scarta `backdrop-filter` se nel sorgente viene prima di `-webkit-backdrop-filter`. Scrivere sempre prima il prefisso. Controllato da `scripts/check-dist.mjs`.
 - Non impostare `build.target` / `build.cssTarget` più vecchi del default di Vite: Lightning CSS convertirebbe gli `oklch()` in hex+lab.
 - `env(..., 0px)`: l'unità serve (dentro `max()` uno 0 senza unità invalida la dichiarazione). Per questo `length-zero-no-unit` è disattivata.
+- `--header-h` (61px, 73px da `lg`) in `base/_tokens.scss` deve restare uguale all'altezza reale dell'header (padding + logo + bordo): se cambi l'header, aggiornalo, o l'hero a schermo intero sfora o lascia un vuoto.

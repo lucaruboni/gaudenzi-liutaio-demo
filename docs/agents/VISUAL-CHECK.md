@@ -10,3 +10,7 @@ Finché non c'è la regressione visiva automatica (BACKLOG P0, agente `test-engi
 4. Differenza pixel per pixel (Pillow `ImageChops.difference`, soglia 8/255). Atteso: **0 pixel** diversi.
 
 Stato al 2026-10-23: migrazione Vue → 0 pixel di differenza in tutte e 4 le combinazioni.
+
+## Eccezioni approvate dall'utente
+
+- **2026-10-24 — Hero**: video al posto della foto e, da 900 px, altezza a schermo intero. L'hero non va confrontato con `docs/legacy-demo.html`; il resto della pagina sì. Con una finestra alta 9000 px l'hero diventa alto 9000 px: per il confronto a pagina intera fissarne l'altezza (es. `min-height: 827px` per una finestra 1440×900) e allineare le pagine con lo scarto verticale.
