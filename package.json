@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@google/model-viewer": "4.4.0",
-    "@unhead/vue": "2.1.17",
+    "@unhead/vue": "3.4.3",
     "three": "0.183.2",
     "vue": "^3.5.44"
   },
