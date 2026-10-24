@@ -1,4 +1,7 @@
-# Cloudflare Pages – header HTTP. Modifiche: agente cloudflare-edge + security, vedi docs/adr/0003-hosting-cloudflare-pages.md
+# Header HTTP (Cloudflare Workers, asset statici). Modifiche: agente cloudflare-edge + security, vedi docs/adr/0003-hosting-cloudflare-pages.md
+# CSP e sezione 3D (<model-viewer>): 'wasm-unsafe-eval' per il decoder meshopt (solo WebAssembly, non eval JS),
+# blob: in img-src/connect-src per le texture del .glb, sha256 = <style> interno di model-viewer
+# (ricalcolato da scripts/check-dist.mjs: se cambia con un aggiornamento, la build fallisce).
 /*
   X-Robots-Tag: noindex, nofollow
   Strict-Transport-Security: max-age=31536000; includeSubDomains
@@ -7,7 +10,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
   Cross-Origin-Opener-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'sha256-PXtZZkJMMyc18o/DN1ZEFOJ2qEGq95IQbVaJFMOXOb0=' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' blob:; connect-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
 
 # Asset con hash nel nome (revisioning Vite): cache per sempre.
 /assets/*

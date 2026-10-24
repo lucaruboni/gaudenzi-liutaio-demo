@@ -16,11 +16,13 @@ La demo statica è diventata un progetto Vue 3 + Vite 8 pre-renderizzato (vite-s
 - Branch `feat/vue-migration` unito su `main` e pubblicato su GitHub (2026-10-24); CI verde.
 - Demo **non indicizzabile** (noindex in `_headers`, meta robots, `robots.txt` Disallow), controllato da `check-dist`.
 - Hero (2026-10-24, richiesta dell'utente): video **segnaposto** in loop con poster al posto della foto; da 900 px header + hero riempiono la prima schermata. Rispetta `prefers-reduced-motion`. Resto della pagina invariato.
+- Sezione 3D `#in-3d` prima del catalogo (2026-10-24): `<model-viewer>` caricato a richiesta, CSP adattata (hash dello <style> interno, `blob:`, `wasm-unsafe-eval`) e verificata via CDP. Modello «Acoustic Guitar» di afurokn (CC BY) in `src/assets/3d/acoustic_guitar.glb`, ottimizzato 4,1 MB → 350 kB (`docs/3D.md`).
+- Didascalia "In foto: OM24R…" tolta dall'hero (il video è un segnaposto).
 - 13 agenti in `.claude/agents/` (orchestratore Opus 5.5, specialisti Sonnet 5.5, effort high), protocollo in `docs/agents/PROTOCOL.md`.
 
 ## In corso
 
-- Nulla: hero con video committato e pubblicato su `main`.
+- Cloudflare Workers Builds risultava **scollegato da GitHub** (banner nel dashboard): l'utente deve ricollegare l'app GitHub; poi verificare il deploy.
 
 ## Prossimo passo
 

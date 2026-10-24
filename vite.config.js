@@ -7,7 +7,13 @@ import vue from '@vitejs/plugin-vue'
 // Il manifest mappa sorgente → file con hash: a fine build viene spostato da dist/.vite a .build/
 // così non viene pubblicato (Cloudflare Pages pubblica tutto il contenuto di dist/).
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue({
+      // <model-viewer> è un web component, non un componente Vue.
+      template: { compilerOptions: { isCustomElement: (tag) => tag === 'model-viewer' } },
+    }),
+  ],
+  assetsInclude: ['**/*.glb'],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
@@ -16,6 +22,8 @@ export default defineConfig({
     // Nessun data: URI: ogni immagine diventa un file con hash (cache immutabile, CSP img-src 'self').
     assetsInlineLimit: 0,
     cssCodeSplit: false,
+    // model-viewer (three.js) è un chunk caricato a richiesta da ~1 MB (290 kB gzip): atteso.
+    chunkSizeWarningLimit: 1100,
   },
   ssgOptions: {
     script: 'async',

@@ -1,5 +1,11 @@
 # Diario delle sessioni
 
+## 2026-10-24 — Sezione 3D
+
+- Cercati modelli: Poly Haven nessuna chitarra; scelto su Sketchfab (API di ricerca) «Acoustic Guitar» di afurokn, CC BY.
+- `<model-viewer>` testato con BoomBox (Khronos) sotto la CSP vera via Chrome DevTools Protocol: bloccati texture `blob:`, wasm meshopt e lo `<style>` interno → CSP aggiornata con hash, controllato da `check-dist`.
+- Sezione nascosta finché manca `guitar.glb`. Il sito vieta gli iframe (`frame-ancestors 'none'`): per test usare CDP, non iframe.
+
 ## 2026-10-24 — Hero con video
 
 - Sito online su `gaudenzi-liutaio-demo.lucaruboni.workers.dev`.

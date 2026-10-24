@@ -4,7 +4,17 @@ import prettier from 'eslint-config-prettier'
 import globals from 'globals'
 
 export default [
-  { ignores: ['dist/', 'coverage/', '.vite-ssg-temp/', 'docs/', 'public/theme-init.js'] },
+  {
+    ignores: [
+      'dist/',
+      'coverage/',
+      '.vite-ssg-temp/',
+      '.wrangler/',
+      '.build/',
+      'docs/',
+      'public/theme-init.js',
+    ],
+  },
   js.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
   {

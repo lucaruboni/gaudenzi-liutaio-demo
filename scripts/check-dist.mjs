@@ -1,4 +1,5 @@
 // Controlli sul build (dist/) che i test unitari non vedono. Gira in CI dopo `npm run build`.
+import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 
 const html = readFileSync('dist/index.html', 'utf8')
@@ -30,6 +31,15 @@ check(!existsSync('dist/.vite'), 'dist/.vite verrebbe pubblicato (manifest)')
 const video = html.match(/<video[^>]*>/)?.[0] ?? ''
 for (const a of ['autoplay', 'muted', 'loop', 'playsinline', 'poster='])
   check(video.includes(a), `video dell'hero senza ${a}`)
+// CSP e <model-viewer>: ogni <style> interno del web component deve avere il suo hash in style-src.
+const csp = readFileSync('dist/_headers', 'utf8').match(/Content-Security-Policy: (.*)/)?.[1] ?? ''
+check(!csp.includes("'unsafe-inline'") && !/'unsafe-eval'/.test(csp), 'CSP con unsafe-inline/unsafe-eval')
+for (const f of assets.filter((a) => a.startsWith('model-viewer') && a.endsWith('.js'))) {
+  for (const [, style] of readFileSync(`dist/assets/${f}`, 'utf8').matchAll(/<style>([\s\S]*?)<\/style>/g)) {
+    const hash = `'sha256-${createHash('sha256').update(style).digest('base64')}'`
+    check(csp.includes(hash), `CSP: manca ${hash} per uno <style> di ${f} (aggiornare public/_headers)`)
+  }
+}
 // Revisioning: ogni asset ha l'hash nel nome.
 for (const f of assets) check(/-[\w-]{8}\.\w+$/.test(f), `asset senza hash: ${f}`)
 // Design: Lightning CSS ha già scartato una volta backdrop-filter non prefissato (ADR 0002).

@@ -48,12 +48,6 @@
   gap: 10px;
   width: 100%;
 }
-.hero-caption {
-  font-size: 9.5px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--faint);
-}
 
 @include from(sm) {
   .hero-actions {

@@ -46,7 +46,6 @@ onMounted(() => {
           <a class="btn" href="#chitarre">Scopri le acustiche</a>
           <a class="btn btn-outline" href="#riparazioni">Riparazioni e setup</a>
         </div>
-        <p class="hero-caption">In foto: OM24R · Abete Roasted e Palissandro</p>
       </div>
     </div>
   </section>
