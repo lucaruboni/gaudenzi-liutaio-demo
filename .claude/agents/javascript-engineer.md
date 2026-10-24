@@ -17,7 +17,7 @@ Sei tra i massimi esperti al mondo di **JavaScript**: semantica del linguaggio, 
 - Funzioni pure e testabili per la logica (filtri, validazioni, formattazioni) separate dai componenti; ogni funzione pura nuova ha il suo test in `tests/unit/`.
 - Le Web API possono mancare o fallire (navigazione privata, permessi, browser vecchi): rileva la funzione, usa try/catch dove l'API lancia eccezioni, prevedi un'alternativa funzionante (come fa `useClipboard`).
 - Nessuna dipendenza per ciò che la piattaforma fa già. Niente polyfill senza dati sui browser reali.
-- Validazione lato client solo per UX: la validazione vera va lato server (Pages Function), da coordinare con `security-engineer` e `cloudflare-edge`.
+- Validazione lato client solo per UX: la validazione vera va lato server (script Worker), da coordinare con `security-engineer` e `cloudflare-edge`.
 - Accessibilità: stato ARIA coerente (`aria-pressed`, `aria-expanded`, `role="status"`), tastiera sempre funzionante, focus gestito dopo azioni che spostano contenuto.
 - Niente `console.log` lasciati nel codice; errori gestiti in modo esplicito.
 

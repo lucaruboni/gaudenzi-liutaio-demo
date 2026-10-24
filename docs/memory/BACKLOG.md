@@ -9,7 +9,7 @@ Priorità: **P0** blocca il go-live · **P1** importante · **P2** miglioramento
 | P0  | Regressione visiva automatica con Playwright (1440/390, chiaro/scuro, baseline da `docs/legacy-demo.html`, container pinnato) e job in CI | test-engineer            | github-cicd, scss-architect                          |
 | P0  | Self-hosting di Montserrat e Yellowtail (woff2, subset latin), rimozione di Google Fonts e aggiornamento CSP, rendering identico          | build-revisioning        | privacy-gdpr, security-engineer                      |
 | P0  | Informativa privacy + cookie policy (bozza con segnaposto) e link nel footer; P.IVA nel footer                                            | privacy-gdpr             | seo-geo                                              |
-| P0  | Creare il progetto Cloudflare Pages con integrazione Git (`docs/DEPLOY.md`) e verificare header/noindex sull'URL `*.pages.dev`            | utente + cloudflare-edge | security-engineer                                    |
+| P0  | Verificare il primo deploy del Worker `gaudenzi-liutaio-demo` e header/noindex sull'URL `workers.dev`                                     | utente + cloudflare-edge | security-engineer                                    |
 | P2  | Go-live: dominio personalizzato, SSL Full (strict), togliere il noindex (solo su richiesta dell'utente)                                   | cloudflare-edge          | seo-geo                                              |
 | P1  | Backend del form: Pages Function con validazione, Turnstile, rate limit, invio email; togliere i valori demo                              | cloudflare-edge          | javascript-engineer, security-engineer, privacy-gdpr |
 | P1  | Pinnare a SHA le Actions (incluso `cloudflare/wrangler-action` del deploy manuale) e rulesets su main                                     | github-cicd              | security-engineer                                    |
@@ -23,6 +23,8 @@ Priorità: **P0** blocca il go-live · **P1** importante · **P2** miglioramento
 | P3  | Versione inglese (i18n, `hreflang`)                                                                                                       | vue-vite-architect       | seo-geo                                              |
 
 ## Completati
+
+- 2026-10-24 — Merge su `main` e push; progetto adattato a Worker con asset statici (`wrangler.toml` `[assets]`, wrangler 4.149.0 fissato).
 
 - 2026-10-24 — Deploy via integrazione Git di Cloudflare Pages documentato; demo resa non indicizzabile; manifest fuori da `dist/`.
 

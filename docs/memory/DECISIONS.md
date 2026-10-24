@@ -2,13 +2,14 @@
 
 Una riga per decisione, la più recente in fondo. Le decisioni architetturali hanno un ADR in `docs/adr/`.
 
-| Data       | Decisione                                                                                                       | Rif.           |
-| ---------- | --------------------------------------------------------------------------------------------------------------- | -------------- |
-| 2026-10-23 | Vue 3 + Vite 8, pagina singola pre-renderizzata con vite-ssg (SEO/GEO: HTML completo senza JS)                  | ADR 0001       |
-| 2026-10-23 | SCSS globale in partial ordinati (niente `<style>` negli SFC) per preservare la cascata della demo              | ADR 0002       |
-| 2026-10-23 | Hosting su Cloudflare Pages, deploy da GitHub Actions; header e cache in `public/_headers`                      | ADR 0003       |
-| 2026-10-23 | JavaScript senza TypeScript (progetto piccolo; rivalutare se cresce)                                            | —              |
-| 2026-10-23 | Orchestratore Opus 5.5 effort high nella sessione principale; specialisti Sonnet 5.5 effort high come subagenti | —              |
-| 2026-10-23 | `docs/legacy-demo.html` resta nel repo come riferimento visivo del design congelato                             | —              |
-| 2026-10-24 | Pubblicazione con l'integrazione Git di Cloudflare Pages (niente token su GitHub); `deploy.yml` solo manuale    | ADR 0003       |
-| 2026-10-24 | La demo non deve essere indicizzata: noindex header + meta, robots.txt Disallow, controllati da `check-dist`    | docs/DEPLOY.md |
+| Data       | Decisione                                                                                                                            | Rif.           |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------- |
+| 2026-10-23 | Vue 3 + Vite 8, pagina singola pre-renderizzata con vite-ssg (SEO/GEO: HTML completo senza JS)                                       | ADR 0001       |
+| 2026-10-23 | SCSS globale in partial ordinati (niente `<style>` negli SFC) per preservare la cascata della demo                                   | ADR 0002       |
+| 2026-10-23 | Hosting su Cloudflare Pages, deploy da GitHub Actions; header e cache in `public/_headers`                                           | ADR 0003       |
+| 2026-10-23 | JavaScript senza TypeScript (progetto piccolo; rivalutare se cresce)                                                                 | —              |
+| 2026-10-23 | Orchestratore Opus 5.5 effort high nella sessione principale; specialisti Sonnet 5.5 effort high come subagenti                      | —              |
+| 2026-10-23 | `docs/legacy-demo.html` resta nel repo come riferimento visivo del design congelato                                                  | —              |
+| 2026-10-24 | Pubblicazione con l'integrazione Git di Cloudflare Pages (niente token su GitHub); `deploy.yml` solo manuale                         | ADR 0003       |
+| 2026-10-24 | La demo non deve essere indicizzata: noindex header + meta, robots.txt Disallow, controllati da `check-dist`                         | docs/DEPLOY.md |
+| 2026-10-24 | Cloudflare **Worker con asset statici** (Workers Builds) al posto di Pages: è il flusso proposto dal dashboard; `_headers` invariato | ADR 0003       |

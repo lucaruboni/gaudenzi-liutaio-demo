@@ -1,4 +1,8 @@
-# Cloudflare Pages (deploy da GitHub Actions con wrangler). Il nome progetto va creato una volta su Cloudflare.
-name = "gaudenzi-guitars"
-pages_build_output_dir = "dist"
+# Cloudflare Workers con asset statici (Workers Builds collegato a GitHub, vedi docs/DEPLOY.md).
+# `name` deve coincidere con il nome del Worker nel dashboard.
+name = "gaudenzi-liutaio-demo"
 compatibility_date = "2026-10-01"
+
+[assets]
+# Nessuno script Worker: Cloudflare serve solo i file di dist/ applicando public/_headers.
+directory = "./dist"

@@ -5,6 +5,7 @@
 - Scelta l'integrazione Git di Cloudflare Pages; guida in `docs/DEPLOY.md`; `deploy.yml` reso manuale per evitare doppi deploy.
 - Noindex su tre livelli + controlli in `check-dist`.
 - Manifest di Vite spostati in `.build/` a fine build (non più pubblicati).
+- Merge su `main` e push. Il dashboard ha creato un Worker, non un Pages: il `wrangler.toml` in formato Pages bloccava `wrangler deploy` e il build command aveva `&` invece di `&&`. Passati a `[assets]`, nome allineato, wrangler fissato.
 
 ## 2026-10-23 — Migrazione a Vue e architettura agenti
 

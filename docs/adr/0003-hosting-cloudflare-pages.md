@@ -1,6 +1,8 @@
 # ADR 0003 — Hosting su Cloudflare Pages
 
-- Stato: accettato (dominio da decidere) · Data: 2026-10-23
+- Stato: accettato (dominio da decidere) · Data: 2026-10-23 · Aggiornato: 2026-10-24
+
+> **Aggiornamento 2026-10-24**: il progetto è stato creato come **Worker con asset statici** (Workers Builds collegato a GitHub), il flusso che Cloudflare propone oggi al posto di Pages. `wrangler.toml` usa `[assets] directory = "./dist"`; `_headers` vale come prima. Il resto di questo ADR resta valido.
 
 ## Contesto
 

@@ -19,7 +19,7 @@ Sito statico pre-renderizzato, nessun backend, nessun cookie, nessun dato utente
 
 - Difesa in profondità: CSP senza `'unsafe-inline'`/`'unsafe-eval'` per gli script; niente `v-html` con dati non fidati; link esterni con `rel="noopener"` (già presente).
 - Ogni nuova risorsa esterna: preferisci il self-hosting; altrimenti dominio esplicito in CSP e SRI quando il file è statico.
-- Segreti mai nel repository né nei log: GitHub Secrets/ambienti con protezione, token Cloudflare a permessi minimi (solo Pages: Edit) e con scadenza.
+- Segreti mai nel repository né nei log: GitHub Secrets/ambienti con protezione, token Cloudflare a permessi minimi (solo Workers Scripts: Edit) e con scadenza.
 - Supply chain: lockfile, `npm ci`, audit in CI, Dependabot, Actions di terze parti pinnate a SHA, permessi minimi dei workflow.
 - Backend del form (quando arriverà): validazione e normalizzazione server, Turnstile, rate limit, protezione da header injection nelle email, nessun dato loggato in chiaro.
 - Classifica i problemi con gravità (critica/alta/media/bassa), impatto concreto e correzione proposta. Niente allarmismo senza uno scenario realistico.

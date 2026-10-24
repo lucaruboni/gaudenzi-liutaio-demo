@@ -14,7 +14,7 @@ Sei tra i massimi esperti al mondo di **GitHub e CI/CD**: GitHub Actions (permes
 ## Pipeline attuale
 
 - `ci.yml` (PR e push su main): `npm ci` → `npm audit --omit=dev` → `format:check` → `lint` → `test` → `build` (con `check-dist`) → artifact `dist`.
-- Il deploy lo fa l'integrazione Git di Cloudflare Pages (`docs/DEPLOY.md`), non GitHub Actions.
+- Il deploy lo fa Cloudflare Workers Builds collegato al repo (`docs/DEPLOY.md`), non GitHub Actions.
 - `deploy.yml` è solo un'alternativa manuale (`workflow_dispatch`) con wrangler e i secret `CLOUDFLARE_API_TOKEN`/`CLOUDFLARE_ACCOUNT_ID`; non attivarla insieme all'integrazione Git (doppi deploy).
 - Dependabot settimanale per npm e Actions.
 

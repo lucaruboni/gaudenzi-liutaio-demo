@@ -13,7 +13,8 @@ Sei tra i massimi esperti al mondo di **Cloudflare e HTTPS**: Pages e Pages Func
 
 ## Stato attuale (ADR 0003)
 
-- Hosting: Cloudflare Pages con integrazione Git (progetto `gaudenzi-guitars`, build `npm test && npm run build`, output `dist/`, `NODE_VERSION=24`). Procedura in `docs/DEPLOY.md`.
+- Hosting: **Worker con asset statici** `gaudenzi-liutaio-demo` (Workers Builds collegato a GitHub; build `npm test && npm run build`, deploy `npx wrangler deploy`, `NODE_VERSION=24`). Config in `wrangler.toml` (`[assets] directory = "./dist"`, `name` uguale al Worker). Procedura in `docs/DEPLOY.md`.
+- `functions/` di Pages non vale per i Worker: il backend del form sarà uno script Worker (`main` in `wrangler.toml` + `run_worker_first` per le sole rotte API).
 - Demo non indicizzabile: `X-Robots-Tag: noindex, nofollow` in `_headers` (non toglierlo senza conferma dell'utente).
 - `_headers`: HSTS 1 anno (senza preload), CSP restrittiva (`script-src 'self'`, font e CSS solo da Google Fonts finché non sono self-hosted), `X-Frame-Options: DENY`, `nosniff`, Referrer-Policy, Permissions-Policy, COOP. `/assets/*` immutable 1 anno; HTML rivalidato.
 - Dominio di produzione: **da decidere con l'utente** (oggi il sito storico è gaudenziguitars.com).

@@ -6,7 +6,7 @@ Istruzioni per qualunque agente AI (Claude Code, Codex, Cursor, Copilot, Gemini�
 
 Sito della liuteria **Gaudenzi Guitars** di Mauro Gaudenzi (Cattolica, RN): chitarre acustiche ed elettriche su misura, riparazioni, negozio. Una pagina in italiano, pre-renderizzata.
 
-Stack: **Vue 3.5** (`<script setup>`) · **Vite 8** · **vite-ssg** (pre-rendering) · **@unhead/vue** · **SCSS** (sass-embedded) · **Vitest** + Vue Test Utils + happy-dom · ESLint, Stylelint, Prettier · **Node 24** · deploy su **Cloudflare Pages** via **GitHub Actions**.
+Stack: **Vue 3.5** (`<script setup>`) · **Vite 8** · **vite-ssg** (pre-rendering) · **@unhead/vue** · **SCSS** (sass-embedded) · **Vitest** + Vue Test Utils + happy-dom · ESLint, Stylelint, Prettier · **Node 24** · deploy su **Cloudflare Workers** (asset statici, Workers Builds collegato a GitHub) · CI su **GitHub Actions**.
 
 ## Regola numero uno: il design è congelato
 
@@ -89,7 +89,7 @@ Il lavoro è diviso per dominio; le definizioni complete sono in [`.claude/agent
 | `build-revisioning`   | hash degli asset, manifest, immagini, font, budget      |
 | `github-cicd`         | GitHub, Actions, Dependabot, rilasci                    |
 | `node-npm`            | Node, npm, lockfile, supply chain dei pacchetti         |
-| `cloudflare-edge`     | Cloudflare Pages, DNS, HTTPS, header, cache, Functions  |
+| `cloudflare-edge`     | Cloudflare Workers (asset), DNS, HTTPS, header, cache   |
 | `privacy-gdpr`        | GDPR, Codice privacy, Garante, cookie, normative estere |
 | `seo-geo`             | SEO e GEO/AEO (visibilità nelle risposte AI)            |
 | `security-engineer`   | sicurezza difensiva, CSP, segreti, threat model         |
